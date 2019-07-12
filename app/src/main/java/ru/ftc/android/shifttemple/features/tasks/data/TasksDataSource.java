@@ -9,6 +9,10 @@ public interface TasksDataSource {
 
     void getTasks(Carry<List<Task>> carry); /*This is for getTaskList*/
 
+    void getAppliedTasks(Carry<List<Task>> carry); /*This is for getTaskList*/
+
+    void getCreatedTasks(Carry<List<Task>> carry); /*This is for getTaskList*/
+
     void getTask(String taskId, Carry<Task> carry); /*Interface of getTask API*/
 
     void createTask(Task task, Carry<Task> carry); /*Interface of createTask API*/

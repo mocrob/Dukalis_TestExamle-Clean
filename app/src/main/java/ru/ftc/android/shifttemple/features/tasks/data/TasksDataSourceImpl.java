@@ -19,6 +19,16 @@ public final class TasksDataSourceImpl implements TasksDataSource {
     }
 
     @Override
+    public void getAppliedTasks(Carry<List<Task>> carry) {
+        tasksApi.getAppliedTaskList().enqueue(new DefaultCallback(carry)); /*queue API methods with default callback*/
+    }
+
+    @Override
+    public void getCreatedTasks(Carry<List<Task>> carry) {
+        tasksApi.getCreatedTaskList().enqueue(new DefaultCallback(carry)); /*queue API methods with default callback*/
+    }
+
+    @Override
     public void getTask(String taskId, Carry<Task> carry) {
         tasksApi.getTask(taskId).enqueue(new DefaultCallback(carry));
     }

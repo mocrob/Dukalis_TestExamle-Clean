@@ -13,7 +13,7 @@ import ru.ftc.android.shifttemple.features.tasks.domain.TasksInteractorImpl;
 
 public final class PresenterFactory {
 
-    static  TaskListPresenter createPresenter(Context context){
+    static  TaskListPresenter createPresenter(Context context, int tabPosition){
         final TasksApi api = App.getRetrofitProvider(context)
                 .getRetrofit()
                 .create(TasksApi.class);
@@ -22,6 +22,6 @@ public final class PresenterFactory {
         final TasksRepository repository = new TaskRepositoryImpl(dataSource);
         final TasksInteractor interactor = new TasksInteractorImpl(repository);
 
-        return new TaskListPresenter(interactor);
+        return new TaskListPresenter(interactor, tabPosition);
     }
 }

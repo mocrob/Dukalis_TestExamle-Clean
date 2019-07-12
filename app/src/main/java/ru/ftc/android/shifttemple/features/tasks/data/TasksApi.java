@@ -18,6 +18,12 @@ public interface TasksApi {
     @GET("tasks")
     Call<List<Task>> getTaskList(); /*Get all tasks what we can made*/
 
+    @GET("tasks?status=PROGRESS&type=PUBLIC")
+    Call<List<Task>> getAppliedTaskList(); /*Get all tasks what we can made*/
+
+    @GET("tasks?type=PERSONAL")
+    Call<List<Task>> getCreatedTaskList(); /*Get all tasks what we can made*/
+
     @POST("tasks")
     Call<Task> createTask(@Body Task task); /*Create new Task*/
 

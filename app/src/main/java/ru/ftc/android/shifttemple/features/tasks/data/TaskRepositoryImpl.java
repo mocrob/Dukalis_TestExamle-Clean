@@ -17,6 +17,16 @@ public final class TaskRepositoryImpl implements TasksRepository {
     }
 
     @Override
+    public void loadAppliedTasks(Carry<List<Task>> carry) {
+        dataSource.getAppliedTasks(carry);
+    }
+
+    @Override
+    public void loadCreatedTasks(Carry<List<Task>> carry) {
+        dataSource.getCreatedTasks(carry);
+    }
+
+    @Override
     public void loadTask(String taskId, Carry<Task> carry) {
         dataSource.getTask(taskId, carry);
     }

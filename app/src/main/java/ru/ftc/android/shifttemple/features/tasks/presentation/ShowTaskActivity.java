@@ -69,7 +69,7 @@ public class ShowTaskActivity extends BaseActivity implements TaskListView {
     }
     @Override
     protected MvpPresenter<TaskListView> getPresenter() {
-        presenter = PresenterFactory.createPresenter(this);
+        presenter = PresenterFactory.createPresenter(this,0);
         return presenter;
     }
 

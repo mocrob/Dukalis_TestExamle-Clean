@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 //import android.support.v7.widget.LinearLayoutManager;
 //import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,11 @@ public final class TaskFragment extends BaseFragment implements TaskListView {
         fillUser(user);
     }*/
 
+    public TaskFragment(int tabPosition) {
+        this.tabPosition = tabPosition;
+    }
+
+    private int tabPosition;
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private Button createTaskButton;
@@ -59,10 +65,12 @@ public final class TaskFragment extends BaseFragment implements TaskListView {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_task_fragment, container, false);
     }
 
     private void initView(View view ){
+
         progressBar = view.findViewById(R.id.tasks_progress);
         recyclerView = view.findViewById(R.id.tasks_recycle_view);
         createTaskButton = view.findViewById(R.id.task_create_button);
@@ -71,6 +79,7 @@ public final class TaskFragment extends BaseFragment implements TaskListView {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 presenter.onOpenCreateTaskClicked();
             }
         });
@@ -78,16 +87,34 @@ public final class TaskFragment extends BaseFragment implements TaskListView {
         createTaskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                presenter.reload(tabPosition);
                 presenter.onCreateTaskClicked();
             }
         });
 
         adapter = new TaskAdapter(getContext(), new TaskAdapter.SelectTaskListener(){
             @Override
-            public void onTaskSelect(Task task) {presenter.onTaskSelected(task);}
+            public void onTaskSelect(Task task) {
+                presenter.reload(tabPosition);
+                switch (tabPosition){
+                    case 0:
+                        presenter.onTaskSelected(task);
+                        break;
+                    case 1:
+                        presenter.onAppliedTaskSelected(task);
+                        break;
+                    case 2:
+                        presenter.onCreatedTaskSelected(task);
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             @Override
-            public void onTaskLongClick(Task task) {presenter.onTaskLongClicked(task);}
+            public void onTaskLongClick(Task task) {
+                presenter.onTaskLongClicked(task);
+            }
         });
 
         recyclerView.setAdapter(adapter);
@@ -95,7 +122,7 @@ public final class TaskFragment extends BaseFragment implements TaskListView {
     }
     @Override
     protected MvpPresenter<TaskListView> getPresenter() {
-        presenter = PresenterFactory.createPresenter(getContext());
+        presenter = PresenterFactory.createPresenter(getContext(), tabPosition);
         return presenter;
     }
 

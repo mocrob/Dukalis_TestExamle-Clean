@@ -16,11 +16,74 @@ final class TaskListPresenter extends MvpPresenter<TaskListView> {
 
     private final TasksInteractor interactor;
 
-    TaskListPresenter(TasksInteractor interactor){this.interactor = interactor;}
+    private int tabPosition;
 
+    TaskListPresenter(TasksInteractor interactor, int tabPosition){this.interactor = interactor; this.tabPosition = tabPosition;}
+
+    public void reload(int tabPosition){
+        switch (tabPosition){
+            case 0:
+                loadTasks();
+                break;
+            case 1:
+                loadAppliedTasks();
+                break;
+            case 2:
+                loadCreatedTasks();
+                break;
+            default:
+                break;
+        }
+    }
     @Override
     protected void onViewReady(){
-        loadTasks();
+        switch (tabPosition){
+            case 0:
+                loadTasks();
+                break;
+            case 1:
+                loadAppliedTasks();
+                break;
+            case 2:
+                loadCreatedTasks();
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private void loadAppliedTasks(){
+        view.showProgress();
+        interactor.loadAppliedTasks(new Carry<List<Task>>() {
+            @Override
+            public void onSuccess(List<Task> result) {
+                view.showTaskList(result);
+                view.hideProgress();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                view.hideProgress();
+                view.showError(throwable.getMessage());
+            }
+        });
+    }
+    private void loadCreatedTasks(){
+        view.showProgress();
+        interactor.loadCreatedTasks(new Carry<List<Task>>() {
+            @Override
+            public void onSuccess(List<Task> result) {
+                view.showTaskList(result);
+                view.hideProgress();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                view.hideProgress();
+                view.showError(throwable.getMessage());
+            }
+        });
     }
 
     private void loadTasks(){
@@ -41,6 +104,43 @@ final class TaskListPresenter extends MvpPresenter<TaskListView> {
     }
 
     void onTaskSelected(Task task)
+    {
+        view.showProgress();
+        interactor.loadTask(String.valueOf(task.getId()), new Carry<Task>() {
+            @Override
+            public void onSuccess(Task result) {
+                view.hideProgress();
+                //TO DO Show card of task
+                view.openFullTaskCard(result);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                view.hideProgress();
+                view.showError(throwable.getMessage());
+            }
+        });
+    }
+ void onAppliedTaskSelected(Task task)
+    {
+        view.showProgress();
+        interactor.loadTask(String.valueOf(task.getId()), new Carry<Task>() {
+            @Override
+            public void onSuccess(Task result) {
+                view.hideProgress();
+                //TO DO Show card of task
+               //
+                view.openFullTaskCard(result);
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                view.hideProgress();
+                view.showError(throwable.getMessage());
+            }
+        });
+    }
+ void onCreatedTaskSelected(Task task)
     {
         view.showProgress();
         interactor.loadTask(String.valueOf(task.getId()), new Carry<Task>() {

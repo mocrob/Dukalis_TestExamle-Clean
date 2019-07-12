@@ -66,7 +66,7 @@ public final class CreateTaskActivity extends BaseActivity implements TaskListVi
 
     @Override
     protected MvpPresenter<TaskListView> getPresenter() {
-        presenter = PresenterFactory.createPresenter(this);
+        presenter = PresenterFactory.createPresenter(this,0);
         return presenter;
     }
 

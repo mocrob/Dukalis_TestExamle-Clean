@@ -9,6 +9,10 @@ public interface TasksRepository {
 
     void loadTasks(Carry<List<Task>> carry);
 
+    void loadAppliedTasks(Carry<List<Task>> carry);
+
+    void loadCreatedTasks(Carry<List<Task>> carry);
+
     void loadTask(String taskId, Carry<Task> carry);
 
     void createTask(Task task, Carry<Task> carry);/*Interface of createTask DataSource*/

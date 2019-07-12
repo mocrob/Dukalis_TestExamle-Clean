@@ -18,6 +18,16 @@ public final class TasksInteractorImpl implements TasksInteractor {
     }
 
     @Override
+    public void loadAppliedTasks(Carry<List<Task>> carry) {
+        repository.loadAppliedTasks(carry);
+    }
+
+    @Override
+    public void loadCreatedTasks(Carry<List<Task>> carry) {
+        repository.loadCreatedTasks(carry);
+    }
+
+    @Override
     public void loadTask(String taskId, Carry<Task> carry) {
         repository.loadTask(taskId, carry);
     }
