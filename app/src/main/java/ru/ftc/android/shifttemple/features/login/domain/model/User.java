@@ -16,6 +16,8 @@ public final class User implements Serializable {
     public String roles;
     public String contacts;
     public String firstName;
+    public int dukalises;
+    public int freePersonalTasks;
     public int id;
    /*public User(String sessionId, String name) {
         this.sessionId = sessionId;
@@ -35,7 +37,7 @@ public final class User implements Serializable {
     }
 
     public User(int id, String username, String firstName, String lastName, String email,
-                int age, String city, int karma, String type, String roles, String contacts) {
+                int age, String city, int karma, String type, String roles, String contacts, int dukalises, int freePersonalTasks) {
         this.username = username;
         this.lastName = lastName;
         this.email = email;
@@ -47,6 +49,8 @@ public final class User implements Serializable {
         this.contacts = contacts;
         this.firstName=firstName;
         this.id = id;
+        this.dukalises = dukalises;
+        this.freePersonalTasks = freePersonalTasks;
         this.name = this.firstName;
         this.sessionId = String.valueOf(this.id);
     }
@@ -100,5 +104,13 @@ public final class User implements Serializable {
 
     public String getContacts() {
         return contacts;
+    }
+
+    public int getDukalises() {
+        return dukalises;
+    }
+
+    public int getFreePersonalTasks() {
+        return freePersonalTasks;
     }
 }

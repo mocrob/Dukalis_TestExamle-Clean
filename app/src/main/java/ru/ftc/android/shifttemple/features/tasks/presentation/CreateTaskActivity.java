@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import java.util.List;
@@ -31,6 +32,10 @@ public final class CreateTaskActivity extends BaseActivity implements TaskListVi
 
     private EditText shortDesc;
     private EditText fullDesc;
+    private EditText address;
+    private EditText price;
+    private RadioButton privateButton;
+    private RadioButton publicButton;
     private Button createButton;
 
     private static User user;
@@ -50,15 +55,36 @@ public final class CreateTaskActivity extends BaseActivity implements TaskListVi
         shortDesc = findViewById(R.id.ShortDeskPlace);
         fullDesc = findViewById(R.id.FullDeskPlace);
         createButton = findViewById(R.id.TaskToCreate);
+        address = findViewById(R.id.addressTextPlain);
+        privateButton = findViewById(R.id.radioButton);
+        publicButton = findViewById(R.id.radioButton2);
+        price = findViewById(R.id.priceTextPlain);
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Task task = new Task(String.valueOf(shortDesc.getText()),String.valueOf(fullDesc.getText()),String.valueOf(user.getCity()));
-                presenter.createTask(task);
-                shortDesc.setText("");
-                fullDesc.setText("");
+                if(privateButton.isChecked()){
+                    Task task = new Task(String.valueOf(shortDesc.getText()),String.valueOf(fullDesc.getText()),
+                            String.valueOf(address.getText()),Integer.valueOf(String.valueOf(price.getText())),
+                            "PRIVATE");
+                    presenter.createTask(task);
+                    shortDesc.setText("");
+                    price.setText("");
+                    address.setText("");
+                    fullDesc.setText("");
+                }
+                if(publicButton.isChecked()){
+                    Task task = new Task(String.valueOf(shortDesc.getText()),String.valueOf(fullDesc.getText()),
+                            String.valueOf(address.getText()),Integer.valueOf(String.valueOf(price.getText())),
+                            "SOCIAL");
+                    presenter.createTask(task);
+                    shortDesc.setText("");
+                    price.setText("");
+                    address.setText("");
+                    fullDesc.setText("");
+                }
+
 
             }
         });

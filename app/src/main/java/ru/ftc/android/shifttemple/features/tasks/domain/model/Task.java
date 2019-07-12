@@ -12,6 +12,9 @@ public final class Task implements Serializable {
     public User employer;
     public User executor;
     public int id;
+    public int price;
+    public String type;
+
     //public Enum status;
     public String status;
     public String updateDateTime;
@@ -21,7 +24,7 @@ public final class Task implements Serializable {
         this.address = address;
         this.id = id;
     }
-    public Task(String descriptionShort, String descriptionFull, String address)
+    public Task(String descriptionShort, String descriptionFull, String address, int price, String type)
     {
         this.descriptionShort = descriptionShort;
         this.descriptionFull = descriptionFull;
@@ -32,9 +35,11 @@ public final class Task implements Serializable {
         this.id = 0;
         this.status = null;
         this.updateDateTime = null;
+        this.price = price;
+        this.type = type;
     }
     public Task(String address, String createDataTime, String descriptionFull, String descriptionShort,
-                User employer, User executor, int id, String status, String updateDateTime) {
+                User employer, User executor, int id, String status, String updateDateTime, int price, String type) {
         this.address = address;
         this.createDataTime = createDataTime;
         this.descriptionFull = descriptionFull;
@@ -44,6 +49,8 @@ public final class Task implements Serializable {
         this.id = id;
         this.status = status;
         this.updateDateTime = updateDateTime;
+        this.price = price;
+        this.type = type;
     }
 
     public String getAddress() {
@@ -80,5 +87,14 @@ public final class Task implements Serializable {
 
     public String getUpdateDateTime() {
         return updateDateTime;
+    }
+
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String getType() {
+        return type;
     }
 }

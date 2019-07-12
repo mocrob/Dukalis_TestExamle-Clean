@@ -17,7 +17,8 @@ public final class RetrofitProvider {
 
     //private static final String BASE_URL = "http://192.168.43.53:8080/api/v001/";
     //private static final String BASE_URL = "http://10.9.48.174:8081/api/v001/";
-    private static final String BASE_URL = "https://dukalis.testsitesrv.ru/api/v001/";
+    //private static final String BASE_URL = "https://dukalis.testsitesrv.ru/api/v001/";
+    private static final String BASE_URL = "https://dukalis.fun/api/v001/";
 
     private final Retrofit retrofit;
 

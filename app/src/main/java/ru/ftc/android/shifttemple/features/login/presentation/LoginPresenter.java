@@ -60,4 +60,19 @@ public final class LoginPresenter extends MvpPresenter<LoginView> {
             }
         });
     }
+    public User getUser(String userId){
+        final User[] userr = {null};
+        userInteractor.loadUser(userId, new Carry<User>() {
+            @Override
+            public void onSuccess(User result) {
+                userr[0] = result;
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+
+            }
+        });
+        return userr[0];
+    }
 }

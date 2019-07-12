@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -23,11 +24,26 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(User.class.getSimpleName(), user);
         context.startActivity(intent);
         fillUser(user);
+        activeUser(user);
     }
 
+    private TextView karma;
+    private TextView dukalis;
+    private static User user;
+    public static void activeUser(User userit){
+        user = userit;
+    }
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        karma = findViewById(R.id.userCarmaAmountText);
+        dukalis = findViewById(R.id.userDukalisAmountText);
+        Bundle arguments = getIntent().getExtras();
+        user = (User) arguments.getSerializable(User.class.getSimpleName());
+
+        karma.setText(String.valueOf(user.getKarma()));
+        dukalis.setText(String.valueOf(user.getDukalises()));
 
         // Получаем ViewPager и устанавливаем в него адаптер
         ViewPager viewPager = findViewById(R.id.viewpager);

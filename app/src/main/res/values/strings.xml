@@ -22,5 +22,7 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="userCarma">Карма: </string>
     <string name="userDukalis">Дукалисы: </string>
+    <string name="createTaskTypePrivate">Личные</string>
+    <string name="createTaskTypePublic">Общественные</string>
     <string name="google_maps_key">AIzaSyAFOM-37jxjqGBjFV-y5kn99rOT6ARdffk</string>
 </resources>
