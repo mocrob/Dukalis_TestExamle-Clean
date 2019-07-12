@@ -52,4 +52,9 @@ public final class TasksDataSourceImpl implements TasksDataSource {
     public void completeTask(String taskId, Carry<Task> carry) {
         tasksApi.completeTask(taskId).enqueue(new DefaultCallback(carry));
     }
+
+    @Override
+    public void complainTask(String taskId, Carry<Task> carry) {
+        tasksApi.complainTask(taskId).enqueue(new DefaultCallback(carry));
+    }
 }

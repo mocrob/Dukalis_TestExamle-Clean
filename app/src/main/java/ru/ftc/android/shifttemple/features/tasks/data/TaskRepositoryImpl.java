@@ -50,4 +50,9 @@ public final class TaskRepositoryImpl implements TasksRepository {
     public void completeTask(String taskId, Carry<Task> carry) {
         dataSource.completeTask(taskId, carry);
     }
+
+    @Override
+    public void complainTask(String taskId, Carry<Task> carry) {
+        dataSource.complainTask(taskId, carry);
+    }
 }

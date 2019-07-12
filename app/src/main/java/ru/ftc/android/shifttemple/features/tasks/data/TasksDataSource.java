@@ -22,4 +22,6 @@ public interface TasksDataSource {
     void cancelTask(String taskId, Carry<Task> carry); /*Interface of cancelTask API*/
 
     void completeTask(String taskId, Carry<Task> carry); /*Interface of completeTask API*/
+
+    void complainTask(String taskId, Carry<Task> carry); /*Interface of completeTask API*/
 }

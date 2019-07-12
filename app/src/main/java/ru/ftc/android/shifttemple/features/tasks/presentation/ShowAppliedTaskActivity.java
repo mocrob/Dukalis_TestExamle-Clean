@@ -1,5 +1,6 @@
 package ru.ftc.android.shifttemple.features.tasks.presentation;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,54 +19,16 @@ import ru.ftc.android.shifttemple.features.tasks.domain.model.Task;
 
 public class ShowAppliedTaskActivity extends BaseActivity implements TaskListView {
 
-
-
     public static void start(final Context context, Task task) {
         Intent intent = new Intent(context, ShowAppliedTaskActivity.class);
+        intent.putExtra(Task.class.getSimpleName(), task);
+        fillTask(task);
         context.startActivity(intent);
-        ShowAppliedTaskActivity.showedTask(task);
-
 
     }
+
     private TaskListPresenter presenter;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_task);
-        initView();
-    }
-
-    private TextView addressText;
-    private TextView descShort;
-    private TextView descFull;
-    private TextView updatedText;
-    private Button applyButton;
-    private static Task task;
-
-    public static void showedTask(Task tasked){
-        task = tasked;
-    }
-
-    private void initView(){
-        addressText = findViewById(R.id.cityFullCardTextView);
-        descShort = findViewById(R.id.shortDescFullCardTextView);
-        descFull = findViewById(R.id.fullDescFullCardTextView);
-        updatedText = findViewById(R.id.udateDateTimeText);
-        applyButton = findViewById(R.id.applyButton);
-        addressText.setText(task.getAddress());
-        descShort.setText(task.getDescriptionShort());
-        descFull.setText(task.getDescriptionFull());
-        updatedText.setText(task.getUpdateDateTime());
-
-        applyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.applyTask(task);
-            }
-        });
-    }
     @Override
     protected MvpPresenter<TaskListView> getPresenter() {
         presenter = PresenterFactory.createPresenter(this,0);
@@ -73,10 +36,47 @@ public class ShowAppliedTaskActivity extends BaseActivity implements TaskListVie
     }
 
     @Override
-    protected MvpView getMvpView() {
+    protected  MvpView  getMvpView() {
         return this;
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_show_applied_task);
+        initView();
+    }
+
+    private TextView addressText;
+    private TextView descShort;
+    private TextView descFull;
+    private TextView updatedText;
+    private Button cancelButton;
+    private static Task task;
+    public static void fillTask(Task tasker){
+        task = tasker;
+    }
+    //Bundle arguments = getIntent().getExtras();
+    //private Task task = (Task) arguments.getSerializable(Task.class.getSimpleName());
+
+    private void initView(){
+        //addressText = findViewById(R.id.cityFullCardTextView);
+        //descShort = findViewById(R.id.shortDescFullCardTextView);
+        //descFull = findViewById(R.id.fullDescFullCardTextView);
+        //updatedText = findViewById(R.id.udateDateTimeText);
+        cancelButton = findViewById(R.id.cancelAppliedButton);
+        //addressText.setText(task.getAddress());
+        //descShort.setText(task.getDescriptionShort());
+        //descFull.setText(task.getDescriptionFull());
+        //updatedText.setText(task.getUpdateDateTime());
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.cancelTask(task);
+            }
+        });
+    }
 
     @Override
     public void showProgress() {
@@ -105,6 +105,16 @@ public class ShowAppliedTaskActivity extends BaseActivity implements TaskListVie
 
     @Override
     public void openFullTaskCard(Task task) {
+
+    }
+
+    @Override
+    public void openFullCreatedTaskCard(Task task) {
+
+    }
+
+    @Override
+    public void openFullAppliedTaskCard(Task task) {
 
     }
 

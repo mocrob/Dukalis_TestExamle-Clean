@@ -38,4 +38,7 @@ public interface TasksApi {
 
     @GET("tasks/{taskId}/complete")
     Call<Task> completeTask(@Path("taskId") String taskId); /*Complete the task*/
+
+    @GET("tasks/{taskId}/complain")
+    Call<Task> complainTask(@Path("taskId") String taskId); /*Complete the task*/
 }

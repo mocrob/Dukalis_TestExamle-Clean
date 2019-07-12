@@ -9,7 +9,9 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.tasks.presentation.MainActivity"></activity>
+        <activity android:name=".features.tasks.presentation.ShowCreatedTaskActivity"></activity>
+        <activity android:name=".features.tasks.presentation.ShowAppliedTaskActivity" />
+        <activity android:name=".features.tasks.presentation.MainActivity" />
         <activity android:name=".features.tasks.presentation.ShowTaskActivity" />
         <activity android:name=".features.tasks.presentation.CreateTaskActivity" />
         <activity

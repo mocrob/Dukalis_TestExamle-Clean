@@ -108,6 +108,16 @@ public final class CreateTaskActivity extends BaseActivity implements TaskListVi
     }
 
     @Override
+    public void openFullCreatedTaskCard(Task task) {
+
+    }
+
+    @Override
+    public void openFullAppliedTaskCard(Task task) {
+
+    }
+
+    @Override
     public void showSuccess() {
         Toast.makeText(this,"Success", Toast.LENGTH_LONG);
     }

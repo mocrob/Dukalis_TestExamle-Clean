@@ -121,7 +121,7 @@ final class TaskListPresenter extends MvpPresenter<TaskListView> {
             }
         });
     }
- void onAppliedTaskSelected(Task task)
+ void onAppliedTaskSelected(final Task task)
     {
         view.showProgress();
         interactor.loadTask(String.valueOf(task.getId()), new Carry<Task>() {
@@ -130,7 +130,7 @@ final class TaskListPresenter extends MvpPresenter<TaskListView> {
                 view.hideProgress();
                 //TO DO Show card of task
                //
-                view.openFullTaskCard(result);
+                view.openFullAppliedTaskCard(task);
             }
 
             @Override
@@ -140,7 +140,7 @@ final class TaskListPresenter extends MvpPresenter<TaskListView> {
             }
         });
     }
- void onCreatedTaskSelected(Task task)
+ void onCreatedTaskSelected(final Task task)
     {
         view.showProgress();
         interactor.loadTask(String.valueOf(task.getId()), new Carry<Task>() {
@@ -148,7 +148,7 @@ final class TaskListPresenter extends MvpPresenter<TaskListView> {
             public void onSuccess(Task result) {
                 view.hideProgress();
                 //TO DO Show card of task
-                view.openFullTaskCard(result);
+                view.openFullCreatedTaskCard(task);
             }
 
             @Override
@@ -220,6 +220,46 @@ final class TaskListPresenter extends MvpPresenter<TaskListView> {
 
     public void applyTask(Task task){
         interactor.applyTask(String.valueOf(task.getId()), new Carry<Task>() {
+            @Override
+            public void onSuccess(Task result) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                view.showError("");
+            }
+        });
+    }
+
+    public void cancelTask(Task task){
+        interactor.cancelTask(String.valueOf(task.getId()), new Carry<Task>() {
+            @Override
+            public void onSuccess(Task result) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                view.showError("");
+            }
+        });
+    }
+    public void doneTask(Task task){
+        interactor.completeTask(String.valueOf(task.getId()), new Carry<Task>() {
+            @Override
+            public void onSuccess(Task result) {
+
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+                view.showError("");
+            }
+        });
+    }
+    public void complainTask(Task task){
+        interactor.complainTask(String.valueOf(task.getId()), new Carry<Task>() {
             @Override
             public void onSuccess(Task result) {
 

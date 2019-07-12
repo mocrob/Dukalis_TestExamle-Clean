@@ -15,6 +15,7 @@ import ru.ftc.android.shifttemple.R;
 import ru.ftc.android.shifttemple.features.BaseActivity;
 import ru.ftc.android.shifttemple.features.MvpPresenter;
 import ru.ftc.android.shifttemple.features.MvpView;
+import ru.ftc.android.shifttemple.features.login.domain.model.User;
 import ru.ftc.android.shifttemple.features.tasks.domain.model.Task;
 
 public class ShowTaskActivity extends BaseActivity implements TaskListView {
@@ -23,9 +24,9 @@ public class ShowTaskActivity extends BaseActivity implements TaskListView {
 
     public static void start(final Context context, Task task) {
         Intent intent = new Intent(context, ShowTaskActivity.class);
+        intent.putExtra(Task.class.getSimpleName(), task);
+        fillTask(task);
         context.startActivity(intent);
-        ShowTaskActivity.showedTask(task);
-
 
     }
     private TaskListPresenter presenter;
@@ -44,10 +45,12 @@ public class ShowTaskActivity extends BaseActivity implements TaskListView {
     private TextView updatedText;
     private Button applyButton;
     private static Task task;
-
-    public static void showedTask(Task tasked){
-        task = tasked;
+    public static void fillTask(Task tasker){
+        task = tasker;
     }
+//    Bundle arguments = getIntent().getExtras();
+   // private Task task = (Task) arguments.getSerializable(Task.class.getSimpleName());
+
 
     private void initView(){
         addressText = findViewById(R.id.cityFullCardTextView);
@@ -106,6 +109,16 @@ public class ShowTaskActivity extends BaseActivity implements TaskListView {
 
     @Override
     public void openFullTaskCard(Task task) {
+
+    }
+
+    @Override
+    public void openFullCreatedTaskCard(Task task) {
+
+    }
+
+    @Override
+    public void openFullAppliedTaskCard(Task task) {
 
     }
 

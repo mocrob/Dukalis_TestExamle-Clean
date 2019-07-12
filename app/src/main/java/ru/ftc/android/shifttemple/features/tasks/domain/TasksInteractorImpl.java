@@ -51,4 +51,9 @@ public final class TasksInteractorImpl implements TasksInteractor {
     public void completeTask(String taskId, Carry<Task> carry) {
         repository.completeTask(taskId,carry);
     }
+
+    @Override
+    public void complainTask(String taskId, Carry<Task> carry) {
+        repository.complainTask(taskId,carry);
+    }
 }

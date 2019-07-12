@@ -1,5 +1,6 @@
 package ru.ftc.android.shifttemple.features.tasks.presentation;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,26 +15,35 @@ import ru.ftc.android.shifttemple.R;
 import ru.ftc.android.shifttemple.features.BaseActivity;
 import ru.ftc.android.shifttemple.features.MvpPresenter;
 import ru.ftc.android.shifttemple.features.MvpView;
+import ru.ftc.android.shifttemple.features.login.domain.model.User;
 import ru.ftc.android.shifttemple.features.tasks.domain.model.Task;
 
 public class ShowCreatedTaskActivity extends BaseActivity implements TaskListView {
 
-
-
     public static void start(final Context context, Task task) {
         Intent intent = new Intent(context, ShowCreatedTaskActivity.class);
+        intent.putExtra(Task.class.getSimpleName(), task);
+        fillTask(task);
         context.startActivity(intent);
-        ShowCreatedTaskActivity.showedTask(task);
-
-
     }
+
     private TaskListPresenter presenter;
 
+    @Override
+    protected  MvpPresenter<TaskListView> getPresenter() {
+        presenter = PresenterFactory.createPresenter(this,0);
+        return presenter;
+    }
+
+    @Override
+    protected MvpView  getMvpView() {
+        return this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_task);
+        setContentView(R.layout.activity_show_created_task);
         initView();
     }
 
@@ -41,42 +51,39 @@ public class ShowCreatedTaskActivity extends BaseActivity implements TaskListVie
     private TextView descShort;
     private TextView descFull;
     private TextView updatedText;
-    private Button applyButton;
+    private Button cancelButton;
+    private Button doneButton;
     private static Task task;
-
-    public static void showedTask(Task tasked){
-        task = tasked;
+    public static void fillTask(Task tasker){
+        task = tasker;
     }
+    //Bundle arguments = getIntent().getExtras();
+    //private Task task = (Task) arguments.getSerializable(Task.class.getSimpleName());
 
     private void initView(){
-        addressText = findViewById(R.id.cityFullCardTextView);
-        descShort = findViewById(R.id.shortDescFullCardTextView);
-        descFull = findViewById(R.id.fullDescFullCardTextView);
-        updatedText = findViewById(R.id.udateDateTimeText);
-        applyButton = findViewById(R.id.applyButton);
-        addressText.setText(task.getAddress());
-        descShort.setText(task.getDescriptionShort());
-        descFull.setText(task.getDescriptionFull());
-        updatedText.setText(task.getUpdateDateTime());
-
-        applyButton.setOnClickListener(new View.OnClickListener() {
+        //addressText = findViewById(R.id.cityFullCardTextView);
+        //descShort = findViewById(R.id.shortDescFullCardTextView);
+        //descFull = findViewById(R.id.fullDescFullCardTextView);
+        //updatedText = findViewById(R.id.udateDateTimeText);
+        cancelButton = findViewById(R.id.cancelButton);
+        doneButton = findViewById(R.id.doneButton);
+        //addressText.setText(task.getAddress());
+        //descShort.setText(task.getDescriptionShort());
+        //descFull.setText(task.getDescriptionFull());
+        //updatedText.setText(task.getUpdateDateTime());
+        doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.applyTask(task);
+                presenter.doneTask(task);
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.complainTask(task);
             }
         });
     }
-    @Override
-    protected MvpPresenter<TaskListView> getPresenter() {
-        presenter = PresenterFactory.createPresenter(this,0);
-        return presenter;
-    }
-
-    @Override
-    protected MvpView getMvpView() {
-        return this;
-    }
-
 
     @Override
     public void showProgress() {
@@ -105,6 +112,16 @@ public class ShowCreatedTaskActivity extends BaseActivity implements TaskListVie
 
     @Override
     public void openFullTaskCard(Task task) {
+
+    }
+
+    @Override
+    public void openFullCreatedTaskCard(Task task) {
+
+    }
+
+    @Override
+    public void openFullAppliedTaskCard(Task task) {
 
     }
 

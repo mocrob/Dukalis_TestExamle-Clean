@@ -158,6 +158,17 @@ public final class TaskFragment extends BaseFragment implements TaskListView {
     }
 
     @Override
+    public void openFullCreatedTaskCard(Task task) {
+        ShowCreatedTaskActivity.start(getContext(),task);
+    }
+
+    @Override
+    public void openFullAppliedTaskCard(Task task) {
+        ShowAppliedTaskActivity.start(getContext(),task);
+
+    }
+
+    @Override
     public void showSuccess() {
 
     }
