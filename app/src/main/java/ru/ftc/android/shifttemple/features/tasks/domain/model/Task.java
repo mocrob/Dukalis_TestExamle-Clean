@@ -2,7 +2,9 @@ package ru.ftc.android.shifttemple.features.tasks.domain.model;
 
 import ru.ftc.android.shifttemple.features.login.domain.model.User;
 
-public final class Task {
+import java.io.Serializable;
+
+public final class Task implements Serializable {
     public String address;
     public String createDataTime;
     public String descriptionFull;

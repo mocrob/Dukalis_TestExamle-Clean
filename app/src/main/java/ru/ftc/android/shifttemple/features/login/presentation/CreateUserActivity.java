@@ -52,17 +52,19 @@ public final class CreateUserActivity extends BaseActivity implements LoginView{
         createUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = new User(Integer.valueOf(String.valueOf(ageText.getText())),String.valueOf(cityText.getText()),
-                        String.valueOf(contactsText.getText()),String.valueOf(emailText.getText()),String.valueOf(firstnameText.getText()),
-                        String.valueOf(lastnameText.getText()),String.valueOf(usernameText.getText()));
-                presenter.createUser(user);
-                ageText.setText("");
-                cityText.setText("");
-                contactsText.setText("");
-                emailText.setText("");
-                firstnameText.setText("");
-                lastnameText.setText("");
-                usernameText.setText("");
+                if(ageText.isDirty()&&cityText.isDirty()&&contactsText.isDirty()&&emailText.isDirty()&&firstnameText.isDirty()&&lastnameText.isDirty()&&usernameText.isDirty()) {
+                    User user = new User(Integer.valueOf(String.valueOf(ageText.getText())), String.valueOf(cityText.getText()),
+                            String.valueOf(contactsText.getText()), String.valueOf(emailText.getText()), String.valueOf(firstnameText.getText()),
+                            String.valueOf(lastnameText.getText()), String.valueOf(usernameText.getText()));
+                    presenter.createUser(user);
+                    ageText.setText("");
+                    cityText.setText("");
+                    contactsText.setText("");
+                    emailText.setText("");
+                    firstnameText.setText("");
+                    lastnameText.setText("");
+                    usernameText.setText("");
+                }
             }
         });
     }

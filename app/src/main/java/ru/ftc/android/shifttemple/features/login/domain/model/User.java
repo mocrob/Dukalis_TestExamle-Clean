@@ -1,6 +1,8 @@
 package ru.ftc.android.shifttemple.features.login.domain.model;
 
-public final class User {
+import java.io.Serializable;
+
+public final class User implements Serializable {
 
     private String sessionId;
     private String name;

@@ -30,12 +30,6 @@ import ru.ftc.android.shifttemple.features.login.domain.model.User;
 import ru.ftc.android.shifttemple.features.tasks.domain.model.Task;
 
 public final class TaskFragment extends BaseFragment implements TaskListView {
-/*
-    public static void start(final Context context, User user){
-        Intent intent = new Intent(context, TaskFragment.class);
-        context.startActivity(intent);
-        fillUser(user);
-    }*/
 
     public TaskFragment(int tabPosition) {
         this.tabPosition = tabPosition;

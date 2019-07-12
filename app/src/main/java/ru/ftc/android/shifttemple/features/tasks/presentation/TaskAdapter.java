@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -53,15 +54,23 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
         private final TextView shortDescriptionView;
         private final TextView longDescriptionView;
         private final SelectTaskListener selectTaskListener;
+        private final ImageView imageView;
 
         TaskHolder(View view, SelectTaskListener selectTaskListener){
             super(view);
             this.selectTaskListener = selectTaskListener;
             shortDescriptionView = view.findViewById(R.id.task_item_short_description);
             longDescriptionView = view.findViewById(R.id.task_item_full_description);
+            imageView = view.findViewById(R.id.imageViewCard);
         }
 
         void bind(final Task task){
+            if(task.getStatus().toLowerCase().equals("progress")) {
+                imageView.setImageResource(R.drawable.ispolnenii);
+            }
+            if(task.getStatus().toLowerCase().equals("done")) {
+                imageView.setImageResource(R.drawable.otseneno);
+            }
             String toPrint = task.getDescriptionFull();
             shortDescriptionView.setText(task.getDescriptionShort());
             if(toPrint.length()>20)

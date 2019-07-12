@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static void start(final Context context, User user){
         Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(User.class.getSimpleName(), user);
         context.startActivity(intent);
         fillUser(user);
     }
