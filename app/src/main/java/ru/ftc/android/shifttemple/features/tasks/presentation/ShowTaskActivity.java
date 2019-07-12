@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
 import java.util.List;
 
 import ru.ftc.android.shifttemple.R;
@@ -69,6 +73,7 @@ public class ShowTaskActivity extends BaseActivity implements TaskListView {
                 presenter.applyTask(task);
             }
         });
+
     }
     @Override
     protected MvpPresenter<TaskListView> getPresenter() {

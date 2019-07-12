@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ShiftTemple</string>
+    <string name="app_name">Бюро добрых дел</string>
     <string name="create_button">Создать</string>
     <string name="next_button">Далее</string>
     <string name="CardText1">Text1</string>
@@ -20,4 +20,7 @@
     <string name="title_activity_tab">TabActivity</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="userCarma">Карма: </string>
+    <string name="userDukalis">Дукалисы: </string>
+    <string name="google_maps_key">AIzaSyAFOM-37jxjqGBjFV-y5kn99rOT6ARdffk</string>
 </resources>

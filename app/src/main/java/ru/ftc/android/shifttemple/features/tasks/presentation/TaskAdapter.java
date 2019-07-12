@@ -66,10 +66,10 @@ public final class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskHold
 
         void bind(final Task task){
             if(task.getStatus().toLowerCase().equals("progress")) {
-                imageView.setImageResource(R.drawable.ispolnenii);
+                imageView.setImageResource(R.drawable.ispolneniis);
             }
             if(task.getStatus().toLowerCase().equals("done")) {
-                imageView.setImageResource(R.drawable.otseneno);
+                imageView.setImageResource(R.drawable.otsenenos);
             }
             String toPrint = task.getDescriptionFull();
             shortDescriptionView.setText(task.getDescriptionShort());

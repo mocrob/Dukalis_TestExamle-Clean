@@ -12,12 +12,13 @@
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/colorPrimary"
-        app:tabTextColor="@color/colorFon"
         app:tabIndicatorColor="@color/colorPrimaryDark"
-        app:tabMode="fixed">
+        app:tabMode="fixed"
+        app:tabTextColor="@color/colorFon">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -45,6 +46,67 @@
         android:background="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sliding_tabs" />
+        app:layout_constraintTop_toBottomOf="@+id/sliding_tabs"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/sliding_tabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/userAccountImageView"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/yuzer" />
+
+            <TextView
+                android:id="@+id/userCarmaText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/userAccountImageView"
+                android:text="@string/userCarma"
+                android:textColor="@color/colorFon"/>
+
+            <TextView
+                android:id="@+id/userCarmaAmountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/userCarmaText"
+                android:text="@string/userCarma"
+                android:textColor="@color/colorFon"
+                android:layout_marginStart="10dp"/>
+
+            <TextView
+                android:id="@+id/userDukalisText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userCarmaText"
+                android:layout_toEndOf="@+id/userAccountImageView"
+                android:text="@string/userDukalis"
+                android:textColor="@color/colorFon"/>
+
+            <TextView
+                android:id="@+id/userDukalisAmountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/userCarmaAmountText"
+                android:layout_toEndOf="@+id/userDukalisText"
+                android:layout_marginStart="10dp"
+                android:text="@string/userDukalis"
+                android:textColor="@color/colorFon"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
